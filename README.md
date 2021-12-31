@@ -41,11 +41,11 @@ if __name__ == "__main__":
 ```
 1) command to run the upper code: 
     *  `CUDA_VISIBLE_DEVICES=0,1,2,3 WORLD_SIZE=4 RANK=0 python -m torch.distributed.launch --master_port=23456 --nproc_per_node=4 torch_distributed_example.py`
-2) `torch.distributed.launch' will do a few things to run multiprocessing:
+2) `torch.distributed.launch` will do a few things to run multiprocessing:
     + set 'local_rank' to args
     + launch the function `spmd_main` in torch_distributed_example.py `WORLD_SIZE` times
 3) in `spmd_main` function, we could get `local_rank`, `CUDA_VISIBLE_DEVICES`, `WORLD_SIZE` and etc. According to those args, we could do what we want to do. 
-4) Important: `local_rank` will change by `torch.distributed.launch` automatically. That is, `local_rank' we get in `spmd_main` function in different processing is differenet.
+4) Important: `local_rank` will be changed by `torch.distributed.launch` automatically. That is, `local_rank' we get in `spmd_main` function in different processing is differenet.
 5) more reference:
     - https://github.com/pytorch/examples/tree/master/distributed/ddp
     - https://pytorch.org/docs/master/notes/ddp.html
